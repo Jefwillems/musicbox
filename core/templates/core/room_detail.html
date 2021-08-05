@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <h1>{{ room.name }}</h1>
+
+    <h3>Invites</h3>
+    <a href="{% url 'room-invite' room.pk %}">Invite more users</a>
+    <h3>current sent invites</h3>
+    <ul>
+        {% for inv in room.sent_invites.all %}
+            <li>{{ inv }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

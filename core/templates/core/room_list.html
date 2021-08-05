@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <ul>
+        {% for room in rooms %}
+            <li><a href="{% url 'room-detail' room.pk %}">{{ room.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    {% if pending_invites %}
+        <div class="pending">
+            <h3>pending invites for you</h3>
+            <ul>
+                {% for invite in pending_invites %}
+                    <li>
+                        <p>{{ invite.room }}: {{ invite.message }}</p>
+                        <div>
+                            <form action="{% url 'room-invite-response' invite.room.pk %}" method="post">
+                                {% csrf_token %}
+                                <input type="checkbox" hidden checked name="accept"/>
+                                <input type="number" hidden name="invite_id" value="{{ invite.pk }}"/>
+                                <button type="submit">Accept</button>
+                            </form>
+                            <form action="{% url 'room-invite-response' invite.room.pk %}" method="post">
+                                {% csrf_token %}
+                                <input type="checkbox" hidden name="accept">
+                                <input type="number" hidden name="invite_id" value="{{ invite.pk }}"/>
+                                <button type="submit">Reject</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+{% endblock %}
