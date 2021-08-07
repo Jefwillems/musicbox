@@ -45,7 +45,9 @@ AUTH_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.spotify',
 ]
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'channels'
+]
 CUSTOM_APPS = [
     'users',
     'core'
@@ -89,8 +91,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles'
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
-
+# WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
