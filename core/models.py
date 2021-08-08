@@ -11,6 +11,11 @@ class Room(models.Model):
         return f'{self.name}'
 
 
+class PlayingEntry(models.Model):
+    url = models.URLField()
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='playing_queue')
+
+
 class Invite(models.Model):
     user = models.ForeignKey(get_user_model(), related_name='invites', on_delete=models.CASCADE)
     room = models.ForeignKey(Room, related_name='sent_invites', on_delete=models.CASCADE)

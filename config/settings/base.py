@@ -43,7 +43,7 @@ AUTH_APPS = [
     'allauth.socialaccount',
 
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.spotify',
+    # 'allauth.socialaccount.providers.spotify',
 ]
 THIRD_PARTY_APPS = [
     'channels'

@@ -72,3 +72,12 @@ def respond_to_invite(request, pk):
             return redirect(reverse('room-list'))
     messages.add_message(request, messages.ERROR, f'{form.errors}')
     return redirect(reverse('room-list'))
+
+
+class SocketTestView(TemplateView):
+    template_name = 'core/ws_test.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(SocketTestView, self).get_context_data(**kwargs)
+        ctx['room_name'] = 'test_room'
+        return ctx
